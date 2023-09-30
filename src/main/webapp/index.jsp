@@ -140,7 +140,7 @@ New Products
                                     <img src="<%=pathImg%>" alt="<%=procImgName%>">
                                 </a>
                                 <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
+                                    <p><%=proc.getName()%></p>
                                     <p><strong> $<%=procPrice%>
                                     </strong></p>
                                     <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
@@ -193,7 +193,7 @@ Featured Products
                                     <img src="<%=pathImg%>" alt="<%=procImgName%>">
                                 </a>
                                 <div class="caption">
-                                    <h5>Manicure & Pedicure</h5>
+                                    <h5><%=e.getName()%></h5>
                                     <h4>
                                         <a class="defaultBtn" href="<%= urlProductDetails+"?id="+e.getProduct_id()%>"
                                            title="Click to view"><span

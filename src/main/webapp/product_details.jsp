@@ -1,3 +1,5 @@
+<%@ page import="vn.edu.iuh.fit.backend.dto.allProperty.ProductDTOAllProperty" %>
+<%@ page import="vn.edu.iuh.fit.backend.models.ProductImage" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +8,12 @@
 </head>
 
 <body>
+<%
+    ProductDTOAllProperty proc= (ProductDTOAllProperty)request.getAttribute("proc");
+    String homeUrl= request.getContextPath()+"/home";
+    Double price=proc.getProductPrices().get(proc.getProductPrices().size()-1).getPrice();
+
+%>
 <jsp:include page="template/navbar-fix-top.jsp"/>
 <div class="container">
     <jsp:include page="template/navbar-inner.jsp"/>
@@ -13,8 +21,8 @@
         <jsp:include page="template/span3.jsp"/>
         <div class="span9">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-                <li><a href="index.html">Items</a> <span class="divider">/</span></li>
+                <li><a href="<%=homeUrl%>">Home</a> <span class="divider">/</span></li>
+                <li><a href="<%=homeUrl%>">Items</a> <span class="divider">/</span></li>
                 <li class="active">Preview</li>
             </ul>
             <div class="well well-small">
@@ -22,32 +30,28 @@
                     <div class="span5">
                         <div id="myCarousel" class="carousel slide cntr">
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <a href="#"> <img src="assets/img/a.jpg" alt="" style="width:100%"></a>
+                               <%String active="active";
+                                   for (ProductImage procImage: proc.getProductImageList()) {%>
+                                <div class="item <%=active%>">
+                                    <a href="#"> <img src="<%=procImage.getPath()%>" alt="" style="width:100%"></a>
                                 </div>
-                                <div class="item">
-                                    <a href="#"> <img src="assets/img/b.jpg" alt="" style="width:100%"></a>
-                                </div>
-                                <div class="item">
-                                    <a href="#"> <img src="assets/img/e.jpg" alt="" style="width:100%"></a>
-                                </div>
+                               <% active="";
+                               }%>
                             </div>
                             <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
                             <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
                         </div>
                     </div>
                     <div class="span7">
-                        <h3>Name of the Item [$140.00]</h3>
+                        <h3><%=proc.getName()%> [$<%=price%>]</h3>
                         <hr class="soft"/>
-
-                        <form class="form-horizontal qtyFrm">
+                        <form class="form-horizontal qtyFrm" action="<%=request.getContextPath()%>/cart" method="post">
                             <div class="control-group">
-                                <label class="control-label"><span>$140.00</span></label>
+                                <label class="control-label"><span>$<%=price%></span></label>
                                 <div class="controls">
-                                    <input type="number" class="span6" placeholder="Qty.">
+                                    <input type="number"  name="amount" class="span6" placeholder="Qty.">
                                 </div>
                             </div>
-
                             <div class="control-group">
                                 <label class="control-label"><span>Color</span></label>
                                 <div class="controls">
@@ -70,7 +74,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Add to cart
+                            <button type="submit" name="id" value="<%=proc.getProduct_id()%>" class="shopBtn"><span class=" icon-shopping-cart">
+                                </span> Add to cart
                             </button>
                         </form>
                     </div>

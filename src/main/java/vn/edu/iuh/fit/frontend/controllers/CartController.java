@@ -1,33 +1,36 @@
 package vn.edu.iuh.fit.frontend.controllers;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jboss.weld.context.http.Http;
 import vn.edu.iuh.fit.backend.dto.allProperty.ProductDTOAllProperty;
 import vn.edu.iuh.fit.backend.models.Product;
 import vn.edu.iuh.fit.backend.service.ProductService;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
-@WebServlet("/product-details")
-public class ProductDetailController extends HttpServlet {
-    private static final String PRODUCT_DETAIL_PAGE = "product_details.jsp";
+@WebServlet("/cart")
+public class CartController extends HttpServlet {
+    private static Map<ProductDTOAllProperty,Integer> cart;
     private ProductService productService;
-
     @Override
     public void init() throws ServletException {
-        productService = new ProductService();
+        cart = new LinkedHashMap<>();
+        productService= new ProductService();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("id"));
+        Integer amount =Integer.parseInt(req.getParameter("amount"));
         ProductDTOAllProperty proc = productService.findById(id, ProductDTOAllProperty.class);
-        req.setAttribute("proc", proc);
-        req.getRequestDispatcher(PRODUCT_DETAIL_PAGE).forward(req, resp);
+        cart.put(proc,amount);
+        req.getSession().setAttribute("cart",cart);
+        resp.sendRedirect(req.getContextPath()+"/home");
     }
 }

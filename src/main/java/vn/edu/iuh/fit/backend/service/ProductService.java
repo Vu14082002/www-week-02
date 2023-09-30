@@ -1,6 +1,7 @@
 package vn.edu.iuh.fit.backend.service;
 
 import org.modelmapper.ModelMapper;
+import vn.edu.iuh.fit.backend.dto.allProperty.ProductDTOAllProperty;
 import vn.edu.iuh.fit.backend.dto.lessProperty.ProductDTO;
 import vn.edu.iuh.fit.backend.models.Product;
 import vn.edu.iuh.fit.backend.repositories.impl.ProductRepository;
@@ -54,5 +55,11 @@ public class ProductService {
             listMapper.add(modelMapper.map(e, entityMapperClass));
         });
         return listMapper;
+    }
+
+    public static void main(String[] args) {
+        ProductService  productService = new ProductService();
+        ProductDTOAllProperty proc = productService.findById(7L, ProductDTOAllProperty.class);
+        System.out.println(proc.getName());
     }
 }

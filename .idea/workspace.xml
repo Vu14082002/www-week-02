@@ -10,13 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fc54ea-f1f9-42fc-96a6-2d874c1c9d3d" name="Changes" comment="All REST">
-      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/ProductDetailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/ProductDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/ProductDetailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/product_details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product_details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/template/navbar-fix-top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/navbar-fix-top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/navbar-inner.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/navbar-inner.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/span3.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/span3.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +108,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.5">
+    <configuration name="ProductService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vn.edu.iuh.fit.backend.service.ProductService" />
+      <module name="models" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.iuh.fit.backend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StatisticalRepository" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vn.edu.iuh.fit.backend.repositories.StatisticalRepository" />
       <module name="models" />
@@ -209,6 +223,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProductService" />
         <item itemvalue="Application.StatisticalRepository" />
       </list>
     </recent_temporary>
@@ -247,6 +262,7 @@
       <workItem from="1696034534170" duration="5994000" />
       <workItem from="1696041207397" duration="5471000" />
       <workItem from="1696047518606" duration="4045000" />
+      <workItem from="1696080374419" duration="6012000" />
     </task>
     <task id="LOCAL-00001" summary="REST CRUD FOR EMPLOYEE DTO">
       <option name="closed" value="true" />
@@ -362,6 +378,11 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="vn.edu.iuh.fit.backend.repositories.impl.ProductRepository" memberName="entityManager" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="order.employee" />
