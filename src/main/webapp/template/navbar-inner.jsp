@@ -9,9 +9,9 @@ Navigation Bar Section
         <div class="container">
             <div class="nav-collapse" style="display: flex;justify-content: space-between;">
                 <ul class="nav">
-                    <li class="active"><a href="index.jsp">Home </a></li>
-                    <li class=""><a href="list-view.jsp">List View</a></li>
-                    <li class=""><a href="grid-view.jsp">Grid View</a></li>
+                    <li class="active"><a href="<%=request.getContextPath()+"/home"%>">Home </a></li>
+                    <li class=""><a href="<%=request.getContextPath()+"/list"%>">List View</a></li>
+                    <li class=""><a href="<%=request.getContextPath()+"/grid"%>">Grid View</a></li>
                 </ul>
                 <div>
                     <form action="#" class="navbar-search pull-left">

@@ -532,3 +532,9 @@ hr.soften {
       font-size: 12px;
       text-transform: lowercase;
 }
+/* new*/
+.thumbnails #customli {
+      width: 33.3333333% !important;
+      margin: 10px 0px !important;
+      padding: 5px !important;
+}

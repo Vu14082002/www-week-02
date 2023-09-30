@@ -10,11 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fc54ea-f1f9-42fc-96a6-2d874c1c9d3d" name="Changes" comment="All REST">
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/ProductDetailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/StatisticalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/StatisticalRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/StatisticalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/StatisticalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/navbar-fix-top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/navbar-fix-top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/navbar-inner.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/navbar-inner.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/template/span3.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/template/span3.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +245,8 @@
       <workItem from="1695998544755" duration="937000" />
       <workItem from="1696001105730" duration="45000" />
       <workItem from="1696034534170" duration="5994000" />
-      <workItem from="1696041207397" duration="3744000" />
+      <workItem from="1696041207397" duration="5471000" />
+      <workItem from="1696047518606" duration="4045000" />
     </task>
     <task id="LOCAL-00001" summary="REST CRUD FOR EMPLOYEE DTO">
       <option name="closed" value="true" />
