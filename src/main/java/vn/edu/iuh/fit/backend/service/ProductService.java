@@ -54,4 +54,11 @@ public class ProductService {
     public boolean delete(Long id) {
         return productRepository.delete(id);
     }
+    public <T> List<T> findTopProcNew(int amount,Class<T> entityMapperClass) {
+        List<T> listMapper = new ArrayList<T>();
+        productRepository.findTopNewProc(amount).forEach(e -> {
+            listMapper.add(modelMapper.map(e, entityMapperClass));
+        });
+        return listMapper;
+    }
 }
