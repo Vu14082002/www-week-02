@@ -33,13 +33,6 @@ public class ProductService {
         return listMapper;
     }
 
-    public <T> List<T> findTop(int resutl, Class<T> entityMapperClass) {
-        List<T> entityList = new ArrayList<>();
-        productRepository.findTop(resutl).forEach(e -> {
-            entityList.add(modelMapper.map(e, entityMapperClass));
-        });
-        return entityList;
-    }
 
     public <T> boolean save(T entity) {
         Product product = modelMapper.map(entity, Product.class);
@@ -54,7 +47,8 @@ public class ProductService {
     public boolean delete(Long id) {
         return productRepository.delete(id);
     }
-    public <T> List<T> findTopProcNew(int amount,Class<T> entityMapperClass) {
+
+    public <T> List<T> findTopProcNew(int amount, Class<T> entityMapperClass) {
         List<T> listMapper = new ArrayList<T>();
         productRepository.findTopNewProc(amount).forEach(e -> {
             listMapper.add(modelMapper.map(e, entityMapperClass));

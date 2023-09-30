@@ -24,7 +24,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ProductDTOAllProperty> products = productService.findTopProcNew(12,ProductDTOAllProperty.class);
-        req.getSession().setAttribute("products",products);
+        req.setAttribute("products",products);
         req.getRequestDispatcher(HOME_PAGE).forward(req,resp);
     }
 

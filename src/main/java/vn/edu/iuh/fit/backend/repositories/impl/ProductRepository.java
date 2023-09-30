@@ -36,13 +36,7 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
         return products;
     }
     public List<Product> findTopNewProc(int amount) {
-        List<Product> products = entityManager.createNamedQuery("product.findAll", Product.class).setMaxResults(amount).getResultList();
-        return products;
-    }
-    public List<Product> findTop(int result) {
-        List<Product> products = entityManager.createNamedQuery("product.findTopProcNew", Product.class).
-                setMaxResults(result).
-                getResultList();
+        List<Product> products = entityManager.createNamedQuery("product.findTopProcNew", Product.class).setMaxResults(amount).getResultList();
         return products;
     }
     @Override

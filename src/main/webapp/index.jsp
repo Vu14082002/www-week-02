@@ -2,6 +2,7 @@
 <%@ page import="vn.edu.iuh.fit.backend.dto.allProperty.ProductDTOAllProperty" %>
 <%@ page import="vn.edu.iuh.fit.backend.models.Product" %>
 <%@ page import="vn.edu.iuh.fit.backend.models.ProductImage" %>
+<%@ page import="vn.edu.iuh.fit.backend.models.ProductPrice" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,6 +64,7 @@ Body Section
             <!--
 New Products
 -->
+            <% List<ProductDTOAllProperty> products = (List<ProductDTOAllProperty>) request.getAttribute("products");%>
             <div class="well well-small">
                 <h3>New Products </h3>
                 <hr class="soften"/>
@@ -70,18 +72,17 @@ New Products
                     <div id="newProductCar" class="carousel slide">
                         <div class="carousel-inner">
                             <%
-                                List<ProductDTOAllProperty> products = (List<ProductDTOAllProperty>) session.getAttribute("products");
                                 int numPage = products.size() / 4;
                                 for (int index = 0; index < numPage; index++) {%>
                             <div class="item <%=index==0?"active":""%>">
                                 <ul class="thumbnails">
                                     <%
                                         for (int item = 0; item < 4; item++) {
-                                            ProductDTOAllProperty proc = products.get(item+(index*4));
+                                            ProductDTOAllProperty proc = products.get(item + (index * 4));
                                             if (proc.getProductImageList().size() != 0) {
-                                                String pathImg="";
-                                                for (ProductImage e: proc.getProductImageList()) {
-                                                    pathImg=e.getPath();
+                                                String pathImg = "";
+                                                for (ProductImage e : proc.getProductImageList()) {
+                                                    pathImg = e.getPath();
                                                 }
                                     %>
                                     <li class="span3">
@@ -110,16 +111,87 @@ New Products
                 </div>
                 <div class="row-fluid">
                     <ul class="thumbnails">
+                        <%--                        <li class="span4">--%>
+                        <%--                            <div class="thumbnail">--%>
+                        <%--                                <a class="zoomTool" href="product_details.jsp" title="add to cart"><span--%>
+                        <%--                                        class="icon-search"></span>--%>
+                        <%--                                    QUICK VIEW</a>--%>
+                        <%--                                <a href="product_details.jsp"><img src="assets/img/b.jpg" alt=""></a>--%>
+                        <%--                                <div class="caption cntr">--%>
+                        <%--                                    <p>Manicure & Pedicure</p>--%>
+                        <%--                                    <p><strong> $22.00</strong></p>--%>
+                        <%--                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>--%>
+                        <%--                                    <div class="actionList">--%>
+                        <%--                                        <a class="pull-left" href="#">Add to Wish List </a>--%>
+                        <%--                                        <a class="pull-left" href="#"> Add to Compare </a>--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <br class="clr">--%>
+                        <%--                                </div>--%>
+                        <%--                            </div>--%>
+                        <%--                        </li>--%>
+                        <%--                        <li class="span4">--%>
+                        <%--                            <div class="thumbnail">--%>
+                        <%--                                <a class="zoomTool" href="product_details.jsp" title="add to cart"><span--%>
+                        <%--                                        class="icon-search"></span>--%>
+                        <%--                                    QUICK VIEW</a>--%>
+                        <%--                                <a href="product_details.jsp"><img src="assets/img/c.jpg" alt=""></a>--%>
+                        <%--                                <div class="caption cntr">--%>
+                        <%--                                    <p>Manicure & Pedicure</p>--%>
+                        <%--                                    <p><strong> $22.00</strong></p>--%>
+                        <%--                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>--%>
+                        <%--                                    <div class="actionList">--%>
+                        <%--                                        <a class="pull-left" href="#">Add to Wish List </a>--%>
+                        <%--                                        <a class="pull-left" href="#"> Add to Compare </a>--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <br class="clr">--%>
+                        <%--                                </div>--%>
+                        <%--                            </div>--%>
+                        <%--                        </li>--%>
+                        <%--                        <li class="span4">--%>
+                        <%--                            <div class="thumbnail">--%>
+                        <%--                                <a class="zoomTool" href="product_details.jsp" title="add to cart"><span--%>
+                        <%--                                        class="icon-search"></span>--%>
+                        <%--                                    QUICK VIEW</a>--%>
+                        <%--                                <a href="product_details.jsp"><img src="assets/img/a.jpg" alt=""></a>--%>
+                        <%--                                <div class="caption cntr">--%>
+                        <%--                                    <p>Manicure & Pedicure</p>--%>
+                        <%--                                    <p><strong> $22.00</strong></p>--%>
+                        <%--                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>--%>
+                        <%--                                    <div class="actionList">--%>
+                        <%--                                        <a class="pull-left" href="#">Add to Wish List </a>--%>
+                        <%--                                        <a class="pull-left" href="#"> Add to Compare </a>--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <br class="clr">--%>
+                        <%--                                </div>--%>
+                        <%--                            </div>--%>
+                        <%--                        </li>--%>
+                        <%
+                            for (int index = 0; index < 3; index++) {
+                                ProductDTOAllProperty proc = products.get(index);
+                                if (proc.getProductImageList().size() != 0) {
+                                    String pathImg = "";
+                                    String procImgName="";
+                                    double procPrice = 0.0D;
+                                    for (ProductImage e : proc.getProductImageList()) {
+                                        pathImg = e.getPath();
+                                        procImgName=e.getAlternative();
+                                    }
+                                    for (ProductPrice e : proc.getProductPrices()) {
+                                        procPrice = e.getPrice();
+                                    }
+                        %>
                         <li class="span4">
                             <div class="thumbnail">
-
-                                <a class="zoomTool" href="product_details.jsp" title="add to cart"><span
+                                <a class="zoomTool" href="product_details?<%=proc.getProduct_id()%>"
+                                   title="add to cart"><span
                                         class="icon-search"></span>
                                     QUICK VIEW</a>
-                                <a href="product_details.jsp"><img src="assets/img/b.jpg" alt=""></a>
+                                <a  href="product_details?<%=proc.getProduct_id()%>">
+                                    <img src="<%=pathImg%>" alt="<%=procImgName%>">
+                                </a>
                                 <div class="caption cntr">
                                     <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
+                                    <p><strong> $<%=procPrice%></strong></p>
                                     <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
                                     <div class="actionList">
                                         <a class="pull-left" href="#">Add to Wish List </a>
@@ -129,42 +201,10 @@ New Products
                                 </div>
                             </div>
                         </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a class="zoomTool" href="product_details.jsp" title="add to cart"><span
-                                        class="icon-search"></span>
-                                    QUICK VIEW</a>
-                                <a href="product_details.jsp"><img src="assets/img/c.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="span4">
-                            <div class="thumbnail">
-                                <a class="zoomTool" href="product_details.jsp" title="add to cart"><span
-                                        class="icon-search"></span>
-                                    QUICK VIEW</a>
-                                <a href="product_details.jsp"><img src="assets/img/a.jpg" alt=""></a>
-                                <div class="caption cntr">
-                                    <p>Manicure & Pedicure</p>
-                                    <p><strong> $22.00</strong></p>
-                                    <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                    <div class="actionList">
-                                        <a class="pull-left" href="#">Add to Wish List </a>
-                                        <a class="pull-left" href="#"> Add to Compare </a>
-                                    </div>
-                                    <br class="clr">
-                                </div>
-                            </div>
-                        </li>
+                        <%
+                                }
+                            }
+                        %>
                     </ul>
                 </div>
             </div>
