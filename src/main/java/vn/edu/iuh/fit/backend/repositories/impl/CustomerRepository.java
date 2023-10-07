@@ -27,6 +27,12 @@ public class CustomerRepository implements CRUDRepository<Customer, Long> {
         Customer customer = entityManager.find(Customer.class, id);
         return customer == null ? Optional.empty() : Optional.of(customer);
     }
+    public Optional<Customer> findByEmail(String  email) {
+        Customer customer = entityManager.createNamedQuery("customer.findByEmail",Customer.class)
+                .setParameter("email",email)
+                .getSingleResult();
+        return customer == null ? Optional.empty() : Optional.of(customer);
+    }
 
     @Override
     public List<Customer> findAll() {

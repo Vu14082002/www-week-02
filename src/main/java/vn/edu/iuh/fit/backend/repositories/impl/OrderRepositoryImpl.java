@@ -35,7 +35,10 @@ public class OrderRepositoryImpl implements CRUDRepository<Order, Long> {
         List<Order> orderList = entityManager.createNamedQuery("order.findAll", Order.class).getResultList();
         return orderList;
     }
-
+    public Order findLastOrderByCusId(Long cusId) {
+        String sql="select * from orders where cust_id = ? order by order_id desc limit 1";
+        return (Order) entityManager.createNativeQuery(sql, Order.class).setParameter(1, cusId).getSingleResult();
+    }
     @Override
     public boolean save(Order entity) {
         try {
@@ -87,4 +90,5 @@ public class OrderRepositoryImpl implements CRUDRepository<Order, Long> {
                 .setParameter("endDate", endDate).getSingleResult();
         return result;
     }
+
 }

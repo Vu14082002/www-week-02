@@ -33,6 +33,11 @@ public class OrderService {
         });
         return entityMappers;
     }
+    public <T> T findLastOrderByCusId(Long id,Class<T> entityMapperClass) {
+        Order order = orderRepository.findLastOrderByCusId(id);
+        return modelMapper.map(order,entityMapperClass);
+
+    }
 
     public <T> boolean save(T entity) {
         Order order = modelMapper.map(entity, Order.class);

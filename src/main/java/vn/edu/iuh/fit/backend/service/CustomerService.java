@@ -1,7 +1,6 @@
 package vn.edu.iuh.fit.backend.service;
 
 import org.modelmapper.ModelMapper;
-import vn.edu.iuh.fit.backend.dto.lessProperty.CustomerDTO;
 import vn.edu.iuh.fit.backend.models.Customer;
 import vn.edu.iuh.fit.backend.repositories.impl.CustomerRepository;
 
@@ -18,8 +17,15 @@ public class CustomerService {
         modelMapper = new ModelMapper();
     }
 
+
     public <T>  T findById(Long id, Class<T> entityMapperClass) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isEmpty()) return null;
+        Customer customer = optionalCustomer.get();
+        return modelMapper.map(customer,entityMapperClass);
+    }
+    public <T>  T findByEmail(String email, Class<T> entityMapperClass) {
+        Optional<Customer> optionalCustomer = customerRepository.findByEmail(email);
         if (optionalCustomer.isEmpty()) return null;
         Customer customer = optionalCustomer.get();
         return modelMapper.map(customer,entityMapperClass);

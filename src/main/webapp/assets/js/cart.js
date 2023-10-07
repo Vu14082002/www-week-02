@@ -10,7 +10,7 @@ const setAllTotalItems = function () {
     totaItemlEl.forEach((element) => {
         totaItems += parseFloat(element.textContent.split("$")[1]);
     });
-    totalItemsEl.textContent = totaItems.toFixed(2);
+    totalItemsEl.innerHTML = "$" + totaItems.toFixed(2);
 };
 // set Total for one iteam
 const setTotal = function (parentEl, quantity) {

@@ -39,9 +39,17 @@ public class OrderDetailRepositoryImpl implements CRUDRepository<OrderDetail, Or
 
     @Override
     public boolean save(OrderDetail entity) {
+        String sql = "INSERT INTO `order_detail` (`price`, `quantity`, `order_id`, `product_id`, `note`) VALUES (?, ?, ?, ?, ?);";
         try {
             transaction.begin();
-            entityManager.persist(entity);
+//            entityManager.persist(entity);
+            double price = entity.getProduct().getProductPrices().get(entity.getProduct().getProductPrices().size() - 1).getPrice();
+            entityManager.createNativeQuery(sql)
+                    .setParameter(1, price)
+                    .setParameter(2, entity.getQuantity())
+                    .setParameter(3, entity.getOrder().getId())
+                    .setParameter(4, entity.getProduct().getProduct_id())
+                    .setParameter(5, entity.getNote()).executeUpdate();
             transaction.commit();
             return true;
         } catch (Exception e) {

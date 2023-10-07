@@ -74,6 +74,11 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
         optionalProduct.get().setStatus(ProductStatus.TERMINATED);
         return update(optionalProduct.get());
     }
-    
 
+    public static void main(String[] args) {
+        ProductRepository productRepository = new ProductRepository();
+        Optional<Product> optionalProduct = productRepository.findById(1L);
+        System.out.println(optionalProduct.get().getProduct_id());
+
+    }
 }

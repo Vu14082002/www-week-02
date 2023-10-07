@@ -10,9 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fc54ea-f1f9-42fc-96a6-2d874c1c9d3d" name="Changes" comment="All REST">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/cart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/Authorization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/template/bootstraplink.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/models/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderDetailRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderDetailRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/frontend/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +37,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Jsp File" />
         <option value="Interface" />
+        <option value="Jsp File" />
         <option value="Class" />
       </list>
     </option>
@@ -104,6 +117,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.5">
+    <configuration name="ProductRepository" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vn.edu.iuh.fit.backend.repositories.impl.ProductRepository" />
+      <module name="models" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.iuh.fit.backend.repositories.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProductService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vn.edu.iuh.fit.backend.service.ProductService" />
       <module name="models" />
@@ -141,6 +167,8 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="9d2be928-fd59-415a-9025-e14ac1df522c" />
+        <option name="HTTP_PORT" value="8081" />
+        <option name="JNDI_PORT" value="1100" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -217,8 +245,15 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.ProductRepository" />
+      <item itemvalue="Application.ProductService" />
+      <item itemvalue="Application.StatisticalRepository" />
+      <item itemvalue="Tomcat Server.Tomcat 10.1.5" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProductRepository" />
         <item itemvalue="Application.ProductService" />
         <item itemvalue="Application.StatisticalRepository" />
       </list>
@@ -260,6 +295,10 @@
       <workItem from="1696047518606" duration="4045000" />
       <workItem from="1696080374419" duration="6012000" />
       <workItem from="1696145449749" duration="4730000" />
+      <workItem from="1696259845278" duration="1023000" />
+      <workItem from="1696587101749" duration="10889000" />
+      <workItem from="1696604628397" duration="134000" />
+      <workItem from="1696640268312" duration="6745000" />
     </task>
     <task id="LOCAL-00001" summary="REST CRUD FOR EMPLOYEE DTO">
       <option name="closed" value="true" />
@@ -349,24 +388,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderRepositoryImpl.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/EmployeeRepositoryImpl.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderDetailRepositoryImpl.java</url>
-          <line>55</line>
+          <line>63</line>
           <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/repositories/impl/OrderDetailRepositoryImpl.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/backend/service/EmployeeService.java</url>

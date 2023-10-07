@@ -32,6 +32,7 @@ public class HomeController extends HttpServlet {
         req.setAttribute("products",products);
         req.setAttribute("bestProc",bestProc);
         req.getRequestDispatcher(HOME_PAGE).forward(req,resp);
+
     }
 
     @Override

@@ -18,6 +18,7 @@ import java.util.List;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({
         @NamedQuery(name = "customer.findAll", query = "select c from Customer  c"),
+        @NamedQuery(name = "customer.findByEmail", query = "select c from Customer c where c.email= :email"),
 })
 public class Customer {
     @Id
