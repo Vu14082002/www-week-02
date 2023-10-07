@@ -53,7 +53,10 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        cart = (Map<ProductDTOAllProperty, Integer>) req.getSession().getAttribute("cart");
+        if(cart==null){
+            cart = new LinkedHashMap<>();
+            req.getSession().setAttribute("cart",cart);
+        }
         req.getRequestDispatcher(CART_PAGE).forward(req, resp);
     }
 

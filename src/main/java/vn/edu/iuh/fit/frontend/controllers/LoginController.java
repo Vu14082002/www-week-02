@@ -34,7 +34,12 @@ public class LoginController  extends HttpServlet {
             if(email.equals(customerDTO.getEmail())){
                 req.getSession().setAttribute("customerId",customerDTO.getId());
                 req.getSession().setAttribute("role","customer");
-                resp.sendRedirect(req.getContextPath()+"/home");
+                String uriReq = req.getSession().getAttribute("uriReq").toString();
+                if(!uriReq.equalsIgnoreCase("no-req")){
+                    resp.sendRedirect(uriReq);
+                }else{
+                    resp.sendRedirect(req.getContextPath()+"/home");
+                }
             }else{
                 req.getSession().setAttribute("status","email or password wrong");
                 resp.sendRedirect(req.getContextPath()+"/login");

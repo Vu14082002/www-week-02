@@ -40,21 +40,23 @@
                         </thead>
                         <tbody>
                         <%
-                            for (Map.Entry<ProductDTOAllProperty, Integer> e : procs.entrySet()) {
-                                if (e.getKey().getProductImageList().size() != 0) {
-                                    String pathImg = "";
-                                    String procImgName = "";
-                                    double procPrice = 0.0D;
-                                    for (ProductImage img : e.getKey().getProductImageList()) {
-                                        pathImg = img.getPath();
-                                        procImgName = img.getAlternative();
-                                    }
-                                    for (ProductPrice price : e.getKey().getProductPrices()) {
-                                        procPrice = price.getPrice();
-                                    }
+                            if (procs != null) {
 
-                                    String total = String.format("%.2f", procPrice * e.getValue());
-                                    totalItems += procPrice * e.getValue();
+                                for (Map.Entry<ProductDTOAllProperty, Integer> e : procs.entrySet()) {
+                                    if (e.getKey().getProductImageList().size() != 0) {
+                                        String pathImg = "";
+                                        String procImgName = "";
+                                        double procPrice = 0.0D;
+                                        for (ProductImage img : e.getKey().getProductImageList()) {
+                                            pathImg = img.getPath();
+                                            procImgName = img.getAlternative();
+                                        }
+                                        for (ProductPrice price : e.getKey().getProductPrices()) {
+                                            procPrice = price.getPrice();
+                                        }
+
+                                        String total = String.format("%.2f", procPrice * e.getValue());
+                                        totalItems += procPrice * e.getValue();
                         %>
                         <tr>
 
@@ -81,6 +83,7 @@
                             </td>
                         </tr>
                         <%
+                                    }
                                 }
                             }
                         %>
