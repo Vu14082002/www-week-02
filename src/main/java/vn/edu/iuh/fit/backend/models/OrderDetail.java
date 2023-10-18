@@ -19,15 +19,13 @@ import lombok.*;
 })
 public class OrderDetail {
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "order_id")
-    @JsonBackReference
     private Order order;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "product_id")
-    @JsonBackReference
     private Product product;
 
     @Column(name = "quantity", nullable = false)

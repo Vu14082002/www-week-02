@@ -29,9 +29,8 @@ public class ProductPrice {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "product_id")
-    @JsonBackReference
     private Product product;
 
     @PrePersist

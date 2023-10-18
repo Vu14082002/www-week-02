@@ -19,6 +19,7 @@ import java.util.Objects;
 @Table(name = "orders")
 @NamedQueries({
         @NamedQuery(name = "order.findAll", query = "select o from Order o"),
+        @NamedQuery(name = "order.findOrderByIdJoinFetch", query = "select o from Order o join o.orderDetails where o.id= :id"),
         @NamedQuery(name = "order.getOrdersByEmpId", query = "SELECT o from Order o WHERE  o.employee.id = :id "),
 })
 public class Order {
@@ -30,18 +31,37 @@ public class Order {
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cust_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,
+                            CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<OrderDetail> orderDetails = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.DETACH})
+    private List<OrderDetail> orderDetails;
 
+
+    public Order(LocalDateTime orderDate, Customer customer, Employee employee) {
+        this.orderDate = orderDate;
+        this.customer = customer;
+        this.employee = employee;
+    }
+
+    @PreRemove
+    public void remove(){
+        this.setEmployee(null);
+        this.orderDetails.forEach(e->e.setOrder(null));
+    }
+    public void addOrderDetail(OrderDetail orderDetail){
+        if(this.orderDetails ==null){
+            this.orderDetails = new ArrayList<>();
+        }
+       this.orderDetails.add(orderDetail);
+        orderDetail.setOrder(this);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,5 +73,14 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", employee=" + employee +
+                '}';
     }
 }

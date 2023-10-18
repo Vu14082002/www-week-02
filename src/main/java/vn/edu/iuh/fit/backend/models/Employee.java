@@ -16,8 +16,11 @@ import java.util.List;
 @Setter
 @NamedQueries(
         {
-                @NamedQuery(name = "employee.findAll", query = "select  e from Employee  e where  e.status= 1 "),
                 @NamedQuery(name = "employee.findById", query = "SELECT e from Employee e WHERE (e.id = :id )"),
+                @NamedQuery(name = "employee.findByIdJoinFetcj",
+                        query = "SELECT e from Employee e join  fetch e.lstOrder where (e.id = :id )"),
+                @NamedQuery(name = "employee.findAll", query = "select  e from Employee  e where  e.status= 1 "),
+
         }
 )
 @Entity
@@ -46,19 +49,29 @@ public class Employee {
     @Column(name = "status", nullable = false)
     private EmployeeStatus status;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Order> lstOrder = new ArrayList<>();
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Order> lstOrder;
 
+    public Employee(String address, LocalDateTime dob, String email, String fullname, String phone, EmployeeStatus status) {
+        this.address = address;
+        this.dob = dob;
+        this.email = email;
+        this.fullname = fullname;
+        this.phone = phone;
+        this.status = status;
+    }
 
-    public void addorder(Order order) {
+    public void addOrder(Order order) {
+        if (this.lstOrder == null) {
+            this.lstOrder = new ArrayList<>();
+        }
         this.lstOrder.add(order);
         order.setEmployee(this);
     }
 
-    public void removeOrder(Order order) {
-        this.lstOrder.remove(order);
-        order.setEmployee(null);
+    @PreRemove
+    public void removeOrder() {
+        this.lstOrder.forEach(e -> e.setEmployee(null));
     }
 
 }

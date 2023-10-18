@@ -1,9 +1,7 @@
 package vn.edu.iuh.fit.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +13,10 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "customer")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({
+        @NamedQuery(name = "customer.findCustomerByIdJoinFetch",
+                query = "select c  from Customer c join FETCH c.orderList where c.id =:id"
+        ),
         @NamedQuery(name = "customer.findAll", query = "select c from Customer  c"),
         @NamedQuery(name = "customer.findByEmail", query = "select c from Customer c where c.email= :email"),
 })
@@ -38,11 +38,26 @@ public class Customer {
     @Column(name = "phone", length = 15, nullable = false)
     private String phone;
 
-    @OneToMany(mappedBy = "customer", cascade ={CascadeType.PERSIST,CascadeType.MERGE})
-    private List<Order> orderList = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Order> orderList;
+
+    public Customer(String address, String email, String name, String phone) {
+        this.address = address;
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+    }
+
+    public void addOrder(Order order) {
+        if (this.orderList == null) {
+            this.orderList = new ArrayList<>();
+        }
+        this.orderList.add(order);
+        order.setCustomer(this);
+    }
 
     @PreRemove
-    private void remove(){
-        this.orderList.forEach(e-> e.setCustomer(null));
+    private void remove() {
+        this.orderList.forEach(e -> e.setCustomer(null));
     }
 }
